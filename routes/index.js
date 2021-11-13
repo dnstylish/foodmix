@@ -4,6 +4,7 @@ const router = express.Router()
 
 const homeRouter = require('./home')
 const userRouter = require('./users')
+const categoryRouter = require('./category')
 
 const routers = [
     {
@@ -13,6 +14,10 @@ const routers = [
     {
         prefix: '/users',
         router: userRouter
+    },
+    {
+        prefix: '/categories',
+        router: categoryRouter
     }
 ]
 
