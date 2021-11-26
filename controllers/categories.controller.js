@@ -3,8 +3,12 @@ const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 const { categoryService } = require('../services');
+const userMiddleware = require('./middleware/user.middleware')
 
 const createCategory = catchAsync(async (req, res) => {
+    if (userMiddleware.role != 'admin') {
+        throw new Error('Please login with admin rights!');
+    }
     const category = await categoryService.createCategory(req.body);
     res.status(httpStatus.CREATED).send(category);
 });
